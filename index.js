@@ -5,12 +5,12 @@ const app = express();
 app.use(express.json());
 
 // 简单保护：Bearer Token
-const AUTH_TOKEN = process.env.AUTH_TOKEN || 'your-secret-token';
+const PROXY_TOKEN = process.env.PROXY_TOKEN || 'your-secret-token';
 const FEEDBIN_BASE = 'https://api.feedbin.com/v2';
 
 function authMiddleware(req, res, next) {
   const auth = req.headers.authorization;
-  if (!auth || auth !== `Bearer ${AUTH_TOKEN}`) {
+  if (!auth || auth !== `Bearer ${PROXY_TOKEN}`) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   next();
