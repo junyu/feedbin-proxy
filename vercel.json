@@ -12,8 +12,5 @@
       "src": "/(.*)",
       "dest": "index.js"
     }
-  ],
-  "env": {
-    "PROXY_TOKEN": "@proxy-token"
-  }
+  ]
 }
