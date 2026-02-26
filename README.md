@@ -30,5 +30,5 @@ Headers:
 
 ## Environment Variables
 
-- `AUTH_TOKEN` - Secret token to protect the proxy
+- `PROXY_TOKEN` - Secret token to protect the proxy
 - `PORT` - Server port (default: 3000)
