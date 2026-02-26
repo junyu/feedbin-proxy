@@ -4,6 +4,9 @@ const axios = require('axios');
 const app = express();
 app.use(express.json());
 
+// 处理 Vercel serverless
+module.exports = app;
+
 // 简单保护：Bearer Token
 const PROXY_TOKEN = process.env.PROXY_TOKEN || 'your-secret-token';
 const FEEDBIN_BASE = 'https://api.feedbin.com/v2';
@@ -57,6 +60,8 @@ app.all('/feedbin/*', authMiddleware, async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Feedbin proxy running on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Feedbin proxy running on port ${PORT}`);
+  });
+}
